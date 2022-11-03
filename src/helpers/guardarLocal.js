@@ -9,3 +9,12 @@ export const guardarLocalStorage = (clave, newPeli) => {
 
   return newPeli;
 };
+
+export const getData = () => {
+  const data = JSON.parse(localStorage.getItem("peliculas"));
+  if (Array.isArray(data)) {
+    return data;
+  }
+
+  return [];
+};

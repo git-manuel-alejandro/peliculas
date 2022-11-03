@@ -1,8 +1,19 @@
+import { useEffect, useState } from "react";
+import { getData } from "./helpers/guardarLocal";
+
 import { Buscador } from "./components/Buscador";
 import { Crear } from "./components/Crear";
 import { Listado } from "./components/Listado";
 
 function App() {
+  const [peliculas, setPeliculas] = useState([]);
+  const [peli, setPeli] = useState({});
+  const [cargando, setCargando] = useState(true);
+
+  useEffect(() => {
+    setPeliculas(getData());
+    setCargando(false);
+  }, [peli]);
   return (
     <>
       <div className="layaout">
@@ -31,13 +42,18 @@ function App() {
         </nav>
 
         <section className="content">
-          <Listado />
+          <Listado peliculas={peliculas} cargando={cargando} />
         </section>
 
         <aside className="lateral">
           <Buscador />
 
-          <Crear />
+          <Crear
+            peli={peli}
+            setPeli={setPeli}
+            peliculas={peliculas}
+            setPeliculas={setPeliculas}
+          />
         </aside>
 
         <footer className="footer">

@@ -1,24 +1,4 @@
-import React, { useState, useEffect } from "react";
-
-export const Listado = () => {
-  const [cargando, setCargando] = useState(true);
-  const [peliculas, setPeliculas] = useState([]);
-
-  useEffect(() => {
-    const getData = async () => {
-      const data = await JSON.parse(localStorage.getItem("peliculas"));
-      if (Array.isArray(data)) {
-        setPeliculas(data);
-        setCargando(false);
-      } else {
-        setCargando(false);
-      }
-      // console.log(data[0]);
-    };
-
-    getData();
-  }, []);
-
+export const Listado = ({ peliculas, cargando }) => {
   if (cargando) return "Cargando...";
 
   if (peliculas.length <= 0) return "No hay peliculas";

@@ -1,11 +1,7 @@
-import React, { useState } from "react";
-import { guardarLocalStorage } from "../helpers/guardarLocal";
+import React, { useState, useEffect } from "react";
+import { guardarLocalStorage, getData } from "../helpers/guardarLocal";
 
-export const Crear = () => {
-  //   const [titulo, setTitulo] = useState("");
-  //   const [descripcion, setDescripcion] = useState("");
-  const [peli, setPeli] = useState({});
-
+export const Crear = ({ setPeli, peli }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -18,6 +14,7 @@ export const Crear = () => {
 
     guardarLocalStorage("peliculas", peli);
   };
+
   return (
     <>
       <div className="add">
