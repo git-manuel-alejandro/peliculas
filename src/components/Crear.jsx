@@ -1,19 +1,10 @@
 import React, { useState } from "react";
+import { guardarLocalStorage } from "../helpers/guardarLocal";
 
 export const Crear = () => {
   //   const [titulo, setTitulo] = useState("");
   //   const [descripcion, setDescripcion] = useState("");
   const [peli, setPeli] = useState({});
-
-  const guardarLocalStorage = (newPeli) => {
-    const data = JSON.parse(localStorage.getItem("peliculas"));
-    if (Array.isArray(data)) {
-      data.push(newPeli);
-      localStorage.setItem("peliculas", JSON.stringify(data));
-    } else {
-      localStorage.setItem("peliculas", JSON.stringify([newPeli]));
-    }
-  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -25,7 +16,7 @@ export const Crear = () => {
     const peli = { id, titulo, descripcion };
     setPeli(peli);
 
-    guardarLocalStorage(peli);
+    guardarLocalStorage("peliculas", peli);
   };
   return (
     <>
